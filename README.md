@@ -41,6 +41,14 @@ You can use your own: set it in Settings -> "Azure Client ID". Redirect URIs to 
 `https://login.live.com/oauth20_desktop.srf` for the manual fallback), with "Allow public client flows" enabled.
 Without sign-in the launcher works in offline mode.
 
+## Tests
+
+Run the mod-update regression tests without a GUI or network access:
+
+```
+python -m unittest discover -s tests -v
+```
+
 ## Disclaimer
 
 Not an official Minecraft product. Not approved by or associated with Mojang or Microsoft.

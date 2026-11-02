@@ -424,8 +424,12 @@ def install_mod(provider, pid, mc, mods, seen=None, depth=0):
     old = m.get(info["key"])
     old_base = Path(str(old)).name[:-9] if old and str(old).endswith(".disabled") else (Path(str(old)).name if old else None)
     on_path, off_path = mods / name, mods / (name + ".disabled")
-    # мод вважається вимкненим, якщо користувач перейменував саме цей файл у .disabled
-    disabled = off_path.exists() or bool(old and str(old).endswith(".disabled"))  # стан успадковується й при оновленні версії
+    old_on = mod_path(mods, old_base) if old_base else None
+    old_off = mod_path(mods, old_base + ".disabled") if old_base else None
+    # Реальні файли враховують ручне перемикання; маніфест — запасний стан, якщо старого файлу немає.
+    old_disabled = bool(old_off and (old_off.exists() or
+                        (str(old).endswith(".disabled") and not old_on.exists())))
+    disabled = off_path.exists() or old_disabled
     final = off_path if disabled else on_path
     if not (on_path.exists() or off_path.exists()):
         resp = requests.get(info["url"], headers=UA, timeout=120)
@@ -439,10 +443,12 @@ def install_mod(provider, pid, mc, mods, seen=None, depth=0):
             tmp.unlink(missing_ok=True)
             raise RuntimeError("завантажено не Fabric-мод (немає fabric.mod.json), файл відхилено")
         os.replace(tmp, final)
+    elif disabled and not off_path.exists():
+        on_path.rename(off_path)
     if old and old_base != name:  # стара версія іншого імені (обидва стани: увімкнена/вимкнена)
-        mod_path(mods, old).unlink(missing_ok=True)
-        if old_base:
-            mod_path(mods, old_base).unlink(missing_ok=True)
+        if old_on:
+            old_on.unlink(missing_ok=True)
+            old_off.unlink(missing_ok=True)
     m[info["key"]] = final.name
     manifest_save(mods, m)
     done = [name]
