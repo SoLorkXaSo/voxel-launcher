@@ -1,43 +1,36 @@
 # VOXEL Launcher
 
 <p align="center">
-  <img src="https://placehold.co/160x160/171717/ffffff?text=VOXEL" width="120" />
-</p>
-
-<h3 align="center">A Minecraft launcher built for simplicity.</h3>
-
-<p align="center">
-  A launcher for managing and launching Minecraft: Java Edition instances on Linux.
+  <img src="assets/voxel-logo.png" alt="VOXEL Launcher" width="85%" />
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Platform-Linux-black?style=flat-square" />
-  <img src="https://img.shields.io/badge/Game-Minecraft-62A65A?style=flat-square" />
+  <strong>A Minecraft launcher for Arch Linux.</strong>
+</p>
+
+<p align="center">
+  Manage your Minecraft instances, modpacks and game configurations in one place.
 </p>
 
 ---
 
-## About
+### About
 
-VOXEL Launcher is a Minecraft: Java Edition launcher focused on keeping things simple and organized.
+VOXEL is a Minecraft: Java Edition launcher designed for Linux. It provides a simple way to manage game instances, install different versions and keep modpacks organized.
 
-Manage multiple instances, keep your modpacks separate, and customize each installation without affecting the others.
+Each instance has its own configuration, so you can keep different setups separate.
 
-## Features
+### Features
 
 - Multiple Minecraft instances
 - Vanilla and Fabric support
 - Microsoft account authentication
 - Offline mode
-- Separate configurations for each instance
+- Independent instance configurations
 - Modpack management
-
-## Platform
-
-Currently available for **Linux**.
 
 ---
 
 <p align="center">
-  Made for Minecraft players.
+  <sub>VOXEL Launcher · Made for Minecraft</sub>
 </p>
